@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 
 class OrdersController extends Controller
@@ -10,5 +10,5 @@ class OrdersController extends Controller
     {
 
     }
-    
+
 }
