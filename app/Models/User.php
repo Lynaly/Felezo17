@@ -27,11 +27,21 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasMany('App\Models\Role');
+        return $this->belongsToMany('App\Models\Role');
     }
 
     public function permissions()
     {
-        return $this->hasMany('App\Models\Permission');
+        return $this->belongsToMany('App\Models\Permission');
+    }
+
+    public function accounts()
+    {
+        return $this->belongsTo('App\Models\SocialAccount');
+    }
+
+    public function sch()
+    {
+        return $this->accounts()->where('provider', 'sch');
     }
 }

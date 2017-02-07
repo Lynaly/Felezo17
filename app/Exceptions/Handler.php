@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use View;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +46,22 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if( $exception instanceof HttpException )
+        {
+            if( $request->server('HTTP_HOST') == env('APP_ADMIN_DOMAIN') )
+            {
+                if( View::exists('admin.errors.' . $exception->getStatusCode()) )
+                {
+                    return response()->view(
+                        'admin.errors.' . $exception->getStatusCode(),
+                        [],
+                        $exception->getStatusCode());
+                }
+
+            }
+
+        }
+
         return parent::render($request, $exception);
     }
 
