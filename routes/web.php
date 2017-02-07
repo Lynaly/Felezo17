@@ -19,7 +19,7 @@ Route::group(['domain' => env('APP_DOMAIN', 'felezo.sch.bme.hu')], function ()
     });
 });
 
-Route::group(['domain' => env('APP_ADMIN_DOMAIN'), 'namespace' => 'Admin'], function ()
+Route::group(['domain' => env('APP_ADMIN_DOMAIN'), 'namespace' => 'Admin', 'middleware' => ['role:admin']], function ()
 {
     Route::get('/', 'IndexController@index')->name('index');
 });
