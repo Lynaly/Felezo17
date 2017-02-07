@@ -17,6 +17,12 @@ Route::group(['domain' => env('APP_DOMAIN', 'felezo.sch.bme.hu')], function ()
     {
         Route::get('/', 'OrdersController@index')->name('index');
     });
+
+    Route::group(['prefix' => 'auth', 'as' => 'auth.'], function ()
+    {
+        Route::get('{provider}/redirect', 'AuthController@redirect')->name('redirect');
+        Route::get('{provider}/callback', 'AuthController@callback')->name('callback');
+    });
 });
 
 Route::group(['domain' => env('APP_ADMIN_DOMAIN'), 'namespace' => 'Admin', 'middleware' => ['role:admin']], function ()
