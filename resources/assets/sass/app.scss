@@ -10,3 +10,8 @@
 // Font awesome
 $fa-font-path: "~font-awesome/fonts";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+
+div#map {
+  width: 100%;
+  height: 36em;
+}
