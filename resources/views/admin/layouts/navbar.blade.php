@@ -20,10 +20,13 @@
                     <a href="{{ route('admin.users.index') }}">Felhasználók</a>
                 </li>
 
-                <li @if(Request::segment(2) == 'orders' )class="active"@endif>
-                    <a href="{{ route('admin.orders.index') }}">Jegyek</a>
+                <li @if(Request::segment(2) == 'tickets' )class="active"@endif>
+                    <a href="{{ route('admin.tickets.index') }}">Jegyek</a>
                 </li>
 
+                <li @if(Request::segment(2) == 'orders' )class="active"@endif>
+                    <a href="{{ route('admin.orders.index') }}">Foglalások</a>
+                </li>
 
             </ul>
         </div>

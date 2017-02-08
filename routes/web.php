@@ -37,4 +37,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     {
         Route::get('/', 'OrdersController@index')->name('index');
     });
+
+    Route::group(['prefix' => 'tickets', 'as' => 'tickets.'], function()
+    {
+        Route::get('/', 'TicketsController@index')->name('index');
+        Route::get('create', 'TicketsController@create')->name('create');
+        Route::post('store', 'TicketsController@store')->name('store');
+        Route::get('edit/{ticket}', 'TicketsController@edit')->name('edit');
+    });
 });
