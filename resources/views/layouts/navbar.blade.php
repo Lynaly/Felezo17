@@ -28,6 +28,21 @@
                     <a href="{{ route('location.index') }}">Helyszín</a>
                 </li>
 
+                @role('admin')
+                    <li>
+                        <a href="{{ route('admin.index') }}">Adminisztráció</a>
+                    </li>
+                @endrole
+
+                @if(Auth::check())
+                    <li>
+                        <a href="{{ route('auth.logout') }}">Kijelentkezés</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('auth.redirect', ['provider' => 'sch']) }}">Bejelentkezés</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

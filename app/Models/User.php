@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->accounts()->where('provider', 'sch');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

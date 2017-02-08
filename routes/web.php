@@ -31,11 +31,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::group(['prefix' => 'users', 'as' => 'users.'], function()
     {
         Route::get('/', 'UsersController@index')->name('index');
+        Route::get('{user}', 'UsersController@show')->name('show');
     });
 
     Route::group(['prefix' => 'orders', 'as' => 'orders.'], function()
     {
         Route::get('/', 'OrdersController@index')->name('index');
+        Route::get('edit/{order}', 'OrdersController@edit')->name('edit');
+        Route::post('update/{order}', 'OrdersController@update')->name('update');
+        Route::get('destroy/{order}', 'OrdersController@destroy')->name('destroy');
     });
 
     Route::group(['prefix' => 'tickets', 'as' => 'tickets.'], function()
@@ -45,6 +49,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::post('store', 'TicketsController@store')->name('store');
         Route::get('edit/{ticket}', 'TicketsController@edit')->name('edit');
         Route::post('update/{ticket}', 'TicketsController@update')->name('update');
-        Route::post('destroy/{ticket}', 'TicketsController@destroy')->name('destroy');
+        Route::get('destroy/{ticket}', 'TicketsController@destroy')->name('destroy');
     });
 });

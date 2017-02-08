@@ -2,5 +2,6 @@
 @section('title', 'Adminisztráció')
 @section('icon', 'eye')
 @section('content')
-
-    @endsection
+    <div id="orders"></div>
+    @columnchart('Orders', 'orders')
+@endsection

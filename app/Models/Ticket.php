@@ -16,4 +16,9 @@ class Ticket extends Model
     protected $hidden = [
         'created_at', 'updated_at'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

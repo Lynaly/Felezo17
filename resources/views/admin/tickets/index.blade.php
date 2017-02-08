@@ -12,6 +12,7 @@
                 <th>Név</th>
                 <th>Ár</th>
                 <th>Mennyiség</th>
+                <th>Foglalt</th>
                 <th>Műveletek</th>
             </tr>
             @foreach($tickets as $ticket)
@@ -19,6 +20,7 @@
                     <td class="valign-middle">{{ $ticket->name }}</td>
                     <td class="valign-middle">{{ $ticket->price }} Ft</td>
                     <td class="valign-middle">{{ $ticket->amount }} db</td>
+                    <td class="valign-middle">{{ $ticket->orders()->count() }}</td>
                     <td class="valign-middle">
                         <a href="{{ route('admin.tickets.edit', ['ticket' => $ticket]) }}" class="btn btn-primary" title="Szerkesztés">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -33,6 +35,7 @@
                 <td></td>
                 <td></td>
                 <th>{{ App\Models\Ticket::sum('amount') }} db</th>
+                <td>{{ App\Models\Order::count() }}</td>
                 <td></td>
             </tr>
         </table>
