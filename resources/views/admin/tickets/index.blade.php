@@ -7,7 +7,7 @@
     </div>
 
     <div class="panel panel-default">
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th>Név</th>
                 <th>Ár</th>
@@ -16,11 +16,38 @@
             </tr>
             @foreach($tickets as $ticket)
                 <tr>
-                    <td>{{ $ticket->name }}</td>
-                    <td>{{ $ticket->price }} Ft</td>
-                    <td>{{ $ticket->amount }} db</td>
+                    <td class="valign-middle">{{ $ticket->name }}</td>
+                    <td class="valign-middle">{{ $ticket->price }} Ft</td>
+                    <td class="valign-middle">{{ $ticket->amount }} db</td>
+                    <td class="valign-middle">
+                        <a href="{{ route('admin.tickets.edit', ['ticket' => $ticket]) }}" class="btn btn-primary" title="Szerkesztés">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#modal" data-id="{{ $ticket->id }}" title="Törlés">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
                 </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <th>{{ App\Models\Ticket::sum('amount') }} db</th>
+                <td></td>
+            </tr>
         </table>
     </div>
+
+    @include('admin.tickets.delete-modal')
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $('#modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+
+            var modal = $(this);
+            modal.find('a#btnDelete').attr('href', '{{ route('admin.tickets.destroy', ['ticket' => null]) }}/' + id)
+        })
+    </script>
+@endpush

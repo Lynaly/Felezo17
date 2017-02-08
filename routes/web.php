@@ -44,5 +44,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('create', 'TicketsController@create')->name('create');
         Route::post('store', 'TicketsController@store')->name('store');
         Route::get('edit/{ticket}', 'TicketsController@edit')->name('edit');
+        Route::post('update/{ticket}', 'TicketsController@update')->name('update');
+        Route::post('destroy/{ticket}', 'TicketsController@destroy')->name('destroy');
     });
 });

@@ -29,25 +29,62 @@ class TicketsController extends Controller
 
         if( $validator->fails() )
         {
-
+            return redirect()->route('admin.tickets.create')
+                ->withErrors($validator)
+                ->withInput([
+                    'name'      => $request->name,
+                    'price'     => $request->price,
+                    'amount'    => $request->amount
+                ]);
         }
+
+        Ticket::create([
+            'name'      => $request->name,
+            'price'     => $request->price,
+            'amount'    => $request->amount
+        ]);
+
+        return redirect()->route('admin.tickets.index');
     }
 
     public function edit(Ticket $ticket)
     {
-        return view('admin.tickets.edit');
+        return view('admin.tickets.edit', [
+            'ticket' => $ticket
+        ]);
     }
 
     public function update(Request $request, Ticket $ticket)
     {
         $validator = $this->getValidator($request);
+
+        if( $validator->fails() )
+        {
+            return redirect()->route('admin.tickets.edit', [
+                'ticket' => $ticket
+            ])
+                ->withErrors($validator)
+                ->withInput([
+                    'name'      => $request->name,
+                    'price'     => $request->price,
+                    'amount'    => $request->amount
+                ]);
+        }
+
+        $ticket->update([
+            'name'      => $request->name,
+            'price'     => $request->price,
+            'amount'    => $request->amount
+        ]);
+
+        return redirect()->route('admin.tickets.index');
     }
 
     public function destroy(Ticket $ticket)
     {
         $ticket->delete();
 
-        //return redirect()->route('admin.tickets.index')
+        return redirect()->route('admin.tickets.index');
     }
 
     private function getValidator(Request $request)
@@ -58,7 +95,9 @@ class TicketsController extends Controller
     private function getValidations()
     {
         return [
-
+            'name'      => 'required|string|max:255',
+            'price'     => 'required|numeric|min:0',
+            'amount'    => 'required|numeric|min:0'
         ];
     }
 }
