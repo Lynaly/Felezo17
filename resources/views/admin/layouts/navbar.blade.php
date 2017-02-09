@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar">
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -14,6 +14,10 @@
 
                 <li>
                     <a href="{{ route('news.index') }}">Vissza a főoldalra</a>
+                </li>
+
+                <li @if(Request::segment(2) == 'news' )class="active"@endif>
+                    <a href="{{ route('admin.news.index') }}">Hírek</a>
                 </li>
 
                 <li @if(Request::segment(2) == 'users' )class="active"@endif>

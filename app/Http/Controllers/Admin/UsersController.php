@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -12,7 +13,7 @@ class UsersController extends Controller
     public function index()
     {
         return view('admin.users.index', [
-            'users' => User::orderBy('name')->paginate(20)
+            'users' => User::orderBy('name')->paginate(10)
         ]);
     }
 
@@ -21,5 +22,19 @@ class UsersController extends Controller
         return view('admin.users.show', [
             'user' => $user
         ]);
+    }
+
+    public function promoteToParticipant(User $user)
+    {
+        $user->attachRole(Role::whereName('participant')->firstOrFail()->id);
+
+        return redirect()->intended('admin/users');
+    }
+
+    public function demoteParticipant(User $user)
+    {
+        $user->detachRole(Role::whereName('participant')->firstOrFail()->id);
+
+        return redirect()->intended('admin/users');
     }
 }

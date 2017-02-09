@@ -14,7 +14,7 @@ class SchProvider extends AbstractProvider implements ProviderInterface
         'sn',
         'givenName',
         'mail',
-        'eduPersonEntitlement',
+        'bmeunitscope',
     ];
 
     protected $scopeSeparator = ' ';
@@ -45,11 +45,12 @@ class SchProvider extends AbstractProvider implements ProviderInterface
 
     protected function mapUserToObject(array $user)
     {
-        $result         = new User();
+        $result             = new User();
 
-        $result->id     = $user['internal_id'];
-        $result->name   = $user['displayName'];
-        $result->email  = $user['mail'];
+        $result->id         = $user['internal_id'];
+        $result->name       = $user['displayName'];
+        $result->email      = $user['mail'];
+        $result->bmeunit    = $user['bmeunitscope'];
 
         return $result;
     }

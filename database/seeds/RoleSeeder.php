@@ -14,13 +14,19 @@ class RoleSeeder extends Seeder
     {
         Role::create([
             'name'          => 'admin',
-            'display_name'  => 'Rendező',
+            'display_name'  => 'Admin',
             'description'   => 'Administrator'
         ]);
 
         Role::create([
-            'name'          => 'user',
-            'display_name'  => 'Felhasználó',
+            'name'          => 'organizer',
+            'display_name'  => 'Rendező',
+            'description'   => 'Rendező'
+        ]);
+
+        Role::create([
+            'name'          => 'participant',
+            'display_name'  => 'Résztvevő',
             'description'   => 'Résztvevő'
         ]);
     }

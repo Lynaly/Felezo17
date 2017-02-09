@@ -7,15 +7,29 @@
             <tr>
                 <th>Név</th>
                 <th>E-mail cím</th>
+                <th>Műveletek</th>
             </tr>
             @foreach($users as $user)
                 <tr>
-                    <td>
+                    <td class="valign-middle">
                         <a href="{{ route('admin.users.show', ['user' => $user]) }}">
                             {{ $user->name }}
                         </a>
                     </td>
-                    <td>{{ $user->email }}</td>
+                    <td class="valign-middle">
+                        {{ $user->email }}
+                    </td>
+                    <td>
+                        @if( $user->isParticipant() )
+                            <a href="{{ route('admin.users.demote.participant', ['user' => $user]) }}" class="btn btn-danger" title="Résztvevő jogosultság visszavonása">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                        @else
+                            <a href="{{ route('admin.users.promote.participant', ['user' => $user]) }}" class="btn btn-primary" title="Kinevezés résztvevővé">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>
+                            </a>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </table>

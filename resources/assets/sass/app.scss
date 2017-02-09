@@ -11,6 +11,10 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
+body {
+  background: url("~/../images/left_background_fhd.jpg") no-repeat fixed left;
+}
+
 div#map {
   width: 100%;
   height: 36em;
@@ -18,4 +22,22 @@ div#map {
 
 .valign-middle {
   vertical-align: middle !important;
+}
+
+@media (min-width: $screen-sm-min) {
+  .nav-stacked>li+li {
+    margin-top: 2em;
+  }
+}
+
+ul.nav {
+  li, li.active {
+    a, a:hover, a:active, a:focus {
+      color: #960b0b;
+      background: none;
+
+      font-size: 2em;
+      font-weight: bold;
+    }
+  }
 }

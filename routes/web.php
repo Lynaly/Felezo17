@@ -31,6 +31,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::group(['prefix' => 'users', 'as' => 'users.'], function()
     {
         Route::get('/', 'UsersController@index')->name('index');
+
+        Route::group(['prefix' => 'promote', 'as' => 'promote.'], function()
+        {
+            Route::get('participant/{user}', 'UsersController@promoteToParticipant')->name('participant');
+        });
+
+        Route::group(['prefix' => 'demote', 'as' => 'demote.'], function()
+        {
+            Route::get('participant/{user}', 'UsersController@demoteParticipant')->name('participant');
+        });
+
         Route::get('{user}', 'UsersController@show')->name('show');
     });
 
@@ -50,5 +61,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('edit/{ticket}', 'TicketsController@edit')->name('edit');
         Route::post('update/{ticket}', 'TicketsController@update')->name('update');
         Route::get('destroy/{ticket}', 'TicketsController@destroy')->name('destroy');
+    });
+
+    Route::group(['prefix' => 'news', 'as' => 'news.'], function()
+    {
+        Route::get('/', 'NewsController@index')->name('index');
+        Route::get('create', 'NewsController@create')->name('create');
+        Route::post('store', 'NewsController@store')->name('store');
+        Route::get('edit/{news}', 'NewsController@edit')->name('edit');
+        Route::post('update/{news}', 'NewsController@update')->name('update');
+        Route::get('destroy/{news}', 'NewsController@destroy')->name('destroy');
     });
 });

@@ -27,7 +27,7 @@ class IndexController extends Controller
 
     private function getOrdersChart()
     {
-        $orders = $this->lava->DataTable();
+        $orders = Lava::DataTable();
         $orders
             ->addDateColumn('Date')
             ->setDateTimeFormat('Y. m. d.');
@@ -53,6 +53,8 @@ class IndexController extends Controller
 
             $orders->addRow($data);
         }
+
+        return $orders;
     }
 
 }
