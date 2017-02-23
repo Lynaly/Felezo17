@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
@@ -20,5 +21,17 @@ class Ticket extends Model
     public function orders()
     {
         return $this->hasMany('App\Models\Order');
+    }
+
+    public function scopeAvailable(Builder $query)
+    {
+        return $query->where(function(Builder $query) {
+            $query->groupBy('id')->having('id', '<', 'amount');
+        });
+    }
+
+    public function scopeFree(Builder $query)
+    {
+        return $query->sum('amount') - Order::count();
     }
 }

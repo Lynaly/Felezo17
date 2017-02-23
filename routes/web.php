@@ -14,6 +14,9 @@ Route::get('location', 'LocationController@index')->name('location.index');
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function ()
 {
     Route::get('/', 'OrdersController@index')->name('index');
+    Route::get('order', 'OrdersController@order')->name('order')->middleware('auth');
+    Route::post('order', 'OrdersController@placeAnOrder')->name('placeAnOrder')->middleware('auth');
+    Route::get('destroy/{order}', 'OrdersController@destroy')->name('destroy');
 });
 
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function ()
