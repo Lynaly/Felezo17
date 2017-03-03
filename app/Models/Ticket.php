@@ -11,7 +11,7 @@ class Ticket extends Model
     protected $table = 'tickets';
 
     protected $fillable = [
-        'name', 'price', 'amount'
+        'name', 'price', 'amount', 'jug'
     ];
 
     protected $hidden = [

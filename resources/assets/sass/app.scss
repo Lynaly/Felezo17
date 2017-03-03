@@ -11,31 +11,32 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
+html, body {
+  background: no-repeat fixed;
+  background-size: 100% 100%;
+}
+
 @media (max-width: $screen-xs-max) {
   html, body {
-    background: url("~/../images/768.jpg") no-repeat fixed;
-    background-size: cover;
+    background-image: url("~/../images/768.jpg") ;
   }
 }
 
 @media (min-width: $screen-xs-min) {
   html, body {
-    background: url("~/../images/992.jpg") no-repeat fixed;
-    background-size: cover;
+    background-image: url("~/../images/992.jpg");
   }
 }
 
 @media (min-width: $screen-md-min) {
   html, body {
-    background: url("~/../images/1200.jpg") no-repeat fixed;
-    background-size: cover;
+    background-image: url("~/../images/1200.jpg");
   }
 }
 
 @media (min-width: $screen-lg-min) {
   html, body {
-    background: url("~/../images/1920.jpg") no-repeat fixed;
-    background-size: cover;
+    background-image: url("~/../images/1920.jpg");
   }
 }
 
@@ -51,6 +52,10 @@ div#map {
 @media (min-width: $screen-sm-min) {
   .nav-stacked>li+li {
     margin-top: 2em;
+  }
+
+  .col-content {
+    margin-top: 30vh;
   }
 }
 

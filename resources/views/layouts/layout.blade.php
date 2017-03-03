@@ -2,8 +2,8 @@
 @section('body')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">@include('layouts.navbar')</div>
-            <div class="col-md-8" style="margin-top: 23em">
+            <div class="col-sm-4">@include('layouts.navbar')</div>
+            <div class="col-sm-8 col-content">
                 @include('layouts.title')
                 @yield('content')
             </div>
