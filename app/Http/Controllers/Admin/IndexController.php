@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        if( Ticket::count() > 0 ) {
+        if( Ticket::count() && Order::count() ) {
             $this->lava = new Lavacharts();
 
             Lava::ColumnChart('Orders', $this->getOrdersChart(), [

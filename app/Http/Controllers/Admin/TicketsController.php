@@ -34,14 +34,17 @@ class TicketsController extends Controller
                 ->withInput([
                     'name'      => $request->name,
                     'price'     => $request->price,
-                    'amount'    => $request->amount
+                    'jug'       => $request->jug
                 ]);
         }
+
+        if( $request->jug == null )
+            $request->jug = false;
 
         Ticket::create([
             'name'      => $request->name,
             'price'     => $request->price,
-            'amount'    => $request->amount
+            'jug'       => $request->jug
         ]);
 
         return redirect()->route('admin.tickets.index');
@@ -67,14 +70,17 @@ class TicketsController extends Controller
                 ->withInput([
                     'name'      => $request->name,
                     'price'     => $request->price,
-                    'amount'    => $request->amount
+                    'jug'       => $request->jug
                 ]);
         }
+
+        if( $request->jug == null )
+            $request->jug = false;
 
         $ticket->update([
             'name'      => $request->name,
             'price'     => $request->price,
-            'amount'    => $request->amount
+            'jug'       => $request->jug
         ]);
 
         return redirect()->route('admin.tickets.index');
@@ -97,7 +103,7 @@ class TicketsController extends Controller
         return [
             'name'      => 'required|string|max:255',
             'price'     => 'required|numeric|min:0',
-            'amount'    => 'required|numeric|min:0'
+            'jug'       => 'boolean'
         ];
     }
 }

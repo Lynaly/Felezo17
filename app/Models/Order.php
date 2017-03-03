@@ -10,7 +10,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 'ticket_id'
+        'user_id', 'ticket_id', 'jug_name', 'comment'
     ];
 
     protected $hidden = [

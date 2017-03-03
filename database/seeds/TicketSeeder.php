@@ -15,28 +15,24 @@ class TicketSeeder extends Seeder
         Ticket::create([
             'name'      => 'Belépő',
             'price'     => 1000,
-            'amount'    => 70,
             'jug'       => false
         ]);
 
         Ticket::create([
             'name'      => 'Belépő + Korsó',
             'price'     => 1500,
-            'amount'    => 30,
-            'jug'       => false
+            'jug'       => true,
         ]);
 
         Ticket::create([
             'name'      => 'Belépő + Ajándék',
             'price'     => 1500,
-            'amount'    => 20,
             'jug'       => false
         ]);
 
         Ticket::create([
             'name'      => 'Belépő + Korsó + Ajándék',
             'price'     => 2000,
-            'amount'    => 30,
             'jug'       => true
         ]);
 

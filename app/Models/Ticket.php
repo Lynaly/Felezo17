@@ -32,6 +32,6 @@ class Ticket extends Model
 
     public static function Free()
     {
-        return Ticket::sum('amount') - Order::count();
+        return env('MAX_TICKETS') - Order::count();
     }
 }

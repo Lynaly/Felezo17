@@ -17,7 +17,6 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('price');
-            $table->unsignedInteger('amount');
             $table->boolean('jug')->default(false);
             $table->timestamps();
         });

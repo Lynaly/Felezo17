@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('ticket_id');
+            $table->string('jug_name')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -24,10 +24,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Mennyiség:</label>
-                    <div class="input-group">
-                        <input type="number" name="amount" min="0" class="form-control" required="required" placeholder="Mennyiség" value="{{ old('amount') }}">
-                        <span class="input-group-addon">db</span>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="jug" value="1" {{ old('jug', false) == true ? 'checked="checked"' : '' }}> Korsó jár hozzá
+                        </label>
                     </div>
                 </div>
 
