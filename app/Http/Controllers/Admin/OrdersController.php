@@ -5,6 +5,7 @@ namespace app\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -34,6 +35,16 @@ class OrdersController extends Controller
         $order->delete();
 
         return redirect()->route('admin.orders.index');
+    }
+
+    public function exportCsv()
+    {
+        return response()->view('admin.orders.export.csv', [
+            'orders' => Order::all()
+        ], 200, [
+            'Content-type'          => 'text/csv',
+            'Content-Disposition'   => 'attachment;filename=felezo-foglalasok-'. Carbon::now()->format('Y-m-d-h-i-s') .'.csv'
+        ]);
     }
 
     private function getValidator(Request $request)

@@ -6,11 +6,13 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use Auth;
+use GuzzleHttp\Exception\ClientException;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class AuthController extends Controller
 {
+    const BME_UNIT_NEWBIE = 'BME_VIK_NEWBIE';
 
     public function login()
     {
@@ -37,6 +39,10 @@ class AuthController extends Controller
             return redirect()->route('auth.redirect', [
                 'provider' => $provider
             ]);
+        } catch (ClientException $exception) {
+            return redirect()->route('auth.redirect', [
+                'provider' => $provider
+            ]);
         }
 
         $account = SocialAccount::whereProvider($provider)
@@ -51,11 +57,14 @@ class AuthController extends Controller
             } else
                 dd("error");
 
-        } else {
-
+        }
+        else if( in_array(AuthController::BME_UNIT_NEWBIE, $socialite_user->bmeunit) ) {
+            return view('auth.newbie');
+        }
+        else {
             $user = User::create([
-                'name'  => $socialite_user->name,
-                'email' => $socialite_user->email
+                'name'      => $socialite_user->name,
+                'email'     => $socialite_user->email
             ]);
 
             SocialAccount::create([

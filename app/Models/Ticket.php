@@ -30,8 +30,8 @@ class Ticket extends Model
         });
     }
 
-    public function scopeFree(Builder $query)
+    public static function Free()
     {
-        return $query->sum('amount') - Order::count();
+        return Ticket::sum('amount') - Order::count();
     }
 }

@@ -11,8 +11,32 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
-body {
-  background: url("~/../images/left_background_fhd.jpg") no-repeat fixed left;
+@media (max-width: $screen-xs-max) {
+  html, body {
+    background: url("~/../images/768.jpg") no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+@media (min-width: $screen-xs-min) {
+  html, body {
+    background: url("~/../images/992.jpg") no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  html, body {
+    background: url("~/../images/1200.jpg") no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  html, body {
+    background: url("~/../images/1920.jpg") no-repeat fixed;
+    background-size: cover;
+  }
 }
 
 div#map {

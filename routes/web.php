@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('edit/{order}', 'OrdersController@edit')->name('edit');
         Route::post('update/{order}', 'OrdersController@update')->name('update');
         Route::get('destroy/{order}', 'OrdersController@destroy')->name('destroy');
+        Route::get('export/csv', 'OrdersController@exportCsv')->name('export.csv');
     });
 
     Route::group(['prefix' => 'tickets', 'as' => 'tickets.'], function()

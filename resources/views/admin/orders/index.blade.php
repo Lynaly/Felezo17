@@ -3,6 +3,12 @@
 @section('icon', 'usd')
 @section('content')
 
+    <p>
+        <a href="{{ route('admin.orders.export.csv') }}" target="_blank" class="btn btn-primary">
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i> .csv export
+        </a>
+    </p>
+
     <div class="panel panel-default">
         <table class="table table-hover">
             <tr>

@@ -16,11 +16,13 @@ class IndexController extends Controller
 
     public function index()
     {
-        $this->lava = new Lavacharts();
+        if( Ticket::count() > 0 ) {
+            $this->lava = new Lavacharts();
 
-        Lava::ColumnChart('Orders', $this->getOrdersChart(), [
-            'title' => 'Foglalások'
-        ]);
+            Lava::ColumnChart('Orders', $this->getOrdersChart(), [
+                'title' => 'Foglalások'
+            ]);
+        }
 
         return view('admin.index.index');
     }

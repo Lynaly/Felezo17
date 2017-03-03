@@ -2,6 +2,8 @@
 @section('title', 'Adminisztráció')
 @section('icon', 'eye')
 @section('content')
-    <div id="orders"></div>
-    @columnchart('Orders', 'orders')
+    @if( App\Models\Ticket::count() )
+        <div id="orders"></div>
+        @columnchart('Orders', 'orders')
+    @endif
 @endsection
