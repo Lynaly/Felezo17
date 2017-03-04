@@ -43,13 +43,17 @@ class OrdersController extends Controller
             return redirect()->route('orders.order')
                 ->withErrors($validator)
                 ->withInput([
-                    'ticket' => $request->ticket
+                    'ticket'    => $request->ticket,
+                    'jug_name'  => $request->jug_name,
+                    'comment'   => $request->comment
                 ]);
         }
 
         Order::create([
             'user_id'   => Auth::user()->id,
-            'ticket_id' => $request->ticket
+            'ticket_id' => $request->ticket,
+            'jug_name'  => $request->jug_name,
+            'comment'   => $request->comment
         ]);
 
         return redirect()->route('orders.index');
@@ -67,13 +71,23 @@ class OrdersController extends Controller
 
     public function getValidator(Request $request)
     {
-        return Validator::make($request->all(), $this->getValidations());
+        $validator = Validator::make($request->all(), $this->getValidations());
+
+        $validator->addExtension('required_jug', function ($attribute, $value, $parameters) use($request) {
+            $ticket = Ticket::find($request->ticket)->firstOrFail();
+
+            return ($ticket->jug && !empty($value)) || !$ticket->jug;
+        });
+
+        return $validator;
     }
 
     public function getValidations()
     {
         return [
-            'ticket'    => 'required|integer|exists:tickets,id'
+            'ticket'    => 'required|integer|exists:tickets,id',
+            'jug_name'  => 'required_jug',
+            'comment'   => 'nullable|string'
         ];
     }
 }

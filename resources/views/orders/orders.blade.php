@@ -8,7 +8,7 @@
                 <th>Jegytípus</th>
                 <th>Ár</th>
                 <th>Foglalás időpontja</th>
-                <th>Törlés</th>
+                <th>Műveletek</th>
             </tr>
             @foreach($ownOrders as $order)
                 @php($overAllPrice += $order->ticket->price)
@@ -17,6 +17,17 @@
                     <td class="valign-middle">{{ $order->ticket->price }} Ft</td>
                     <td class="valign-middle">{{ $order->created_at->format('Y. m. d. H:i') }}</td>
                     <td>
+                        @if( $order->ticket->jug )
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Korsó felirata: {{ $order->jug_name }}">
+                                <i class="fa fa-beer" aria-hidden="true"></i>
+                            </button>
+                        @endif
+                        @if( !empty($order->comment) )
+                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Megjegyzés: {{ $order->comment }}">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                        </button>
+                        @endif
+
                         <a href="{{ route('orders.destroy', ['order' => $order]) }}" class="btn btn-danger" title="Törlés">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </a>

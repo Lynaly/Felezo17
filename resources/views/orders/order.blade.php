@@ -2,6 +2,15 @@
 @section('title', 'Jegyfoglalás')
 @section('icon', 'ticket')
 @section('content')
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="post" action="{{ route('orders.placeAnOrder') }}">
         {{ csrf_field() }}
 
@@ -41,7 +50,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#ticket").on("change", function () {
-            var jug = $("#ticket option:selected").data("jug");
+            var jug = $("#ticket").find("option:selected").data("jug");
             var jug_name = $("#jug_name");
 
             if( jug ) {

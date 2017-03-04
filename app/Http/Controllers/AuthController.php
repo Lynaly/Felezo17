@@ -64,7 +64,8 @@ class AuthController extends Controller
         else {
             $user = User::create([
                 'name'      => $socialite_user->name,
-                'email'     => $socialite_user->email
+                'email'     => $socialite_user->email,
+                'unit'      => $this->getUnit($socialite_user->bmeunit)
             ]);
 
             SocialAccount::create([
@@ -77,5 +78,22 @@ class AuthController extends Controller
         }
 
         return redirect()->intended('/');
+    }
+
+    private function getUnit($units)
+    {
+        if( $units == null || !count($units) )
+            return 'Nem BME';
+
+        if( in_array('BME_VIK_ACTIVE', $units) )
+            return 'BME VIK (Aktív)';
+
+        if( in_array('BME_VIK', $units) )
+            return 'BME VIK (Passzív)';
+
+        if( in_array('BME', $units) )
+            return 'BME';
+
+        return 'Nem BME';
     }
 }
