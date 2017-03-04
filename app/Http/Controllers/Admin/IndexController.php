@@ -16,7 +16,9 @@ class IndexController extends Controller
 
     public function index()
     {
-        if( Ticket::count() && Order::count() ) {
+        $display = Ticket::count() && Order::count();
+
+        if( $display ) {
             $this->lava = new Lavacharts();
 
             Lava::ColumnChart('Orders', $this->getOrdersChart(), [
@@ -24,7 +26,9 @@ class IndexController extends Controller
             ]);
         }
 
-        return view('admin.index.index');
+        return view('admin.index.index', [
+            'display' => $display
+        ]);
     }
 
     private function getOrdersChart()
@@ -32,7 +36,7 @@ class IndexController extends Controller
         $orders = Lava::DataTable();
         $orders
             ->addDateColumn('Date')
-            ->setDateTimeFormat('Y. m. d.');
+            ->setDateTimeFormat('Y. m. d.'); // Y. m.
 
         $tickets = Ticket::all();
 

@@ -28,6 +28,7 @@
                     <a href="{{ route('location.index') }}">Helyszín</a>
                 </li>
 
+                {{--
                 @role('admin')
                     <li>
                         <a href="{{ route('admin.index') }}">Adminisztráció</a>
@@ -43,6 +44,7 @@
                         <a href="{{ route('auth.redirect', ['provider' => 'sch']) }}">Bejelentkezés</a>
                     </li>
                 @endif
+                --}}
             </ul>
         </div>
     </div>

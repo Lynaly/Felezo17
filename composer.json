@@ -10,7 +10,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "zizaco/entrust": "5.2.x-dev",
-        "khill/lavacharts" : "3.0.*"
+        "khill/lavacharts" : "3.0.*",
+        "sendgrid/sendgrid": "~5.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.2",
