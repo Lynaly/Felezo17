@@ -15,16 +15,29 @@
                 <th>Foglaló</th>
                 <th>Jegy</th>
                 <th>Dátum</th>
+                <th>Egyéb</th>
             </tr>
             @foreach($orders as $order)
                 <tr>
-                    <td>
+                    <td class="valign-middle">
                         <a href="{{ route('admin.users.show', ['user' => $order->user]) }}">
                             {{ $order->user->name }}
                         </a>
                     </td>
-                    <td>{{ $order->ticket->name }}</td>
-                    <td>{{ $order->created_at->format('Y. m. d. H:i') }}</td>
+                    <td class="valign-middle">{{ $order->ticket->name }}</td>
+                    <td class="valign-middle">{{ $order->created_at->format('Y. m. d. H:i') }}</td>
+                    <td>
+                        @if( $order->ticket->jug )
+                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Korsó felirat: {{ $order->jug_name }}">
+                                <i class="fa fa-beer" aria-hidden="true"></i>
+                            </button>
+                        @endif
+                        @if( $order->comment != null && !empty($order->comment) )
+                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Megjegyzés: {{ $order->comment }}">
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                            </button>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </table>
@@ -32,3 +45,10 @@
 
     {{ $orders->links() }}
 @endsection
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+@endpush

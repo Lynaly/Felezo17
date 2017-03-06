@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Auth;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -33,7 +34,20 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         if ($this->shouldReport($exception)) {
-            app('sentry')->captureException($exception);
+            /** @var \Raven_Client $sentry */
+            $sentry = app('sentry');
+
+            if( Auth::check() ) {
+                $sentry->user_context([
+                    'id'    => Auth::user()->id,
+                    'name'  => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                    'unit'  => Auth::user()->unit,
+                    'ip'    => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null
+                ]);
+            }
+
+            $sentry->captureException($exception);
         }
 
         parent::report($exception);

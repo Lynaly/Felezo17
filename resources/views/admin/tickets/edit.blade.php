@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="jug" value="1"> Korsó jár hozzá
+                            <input type="checkbox" name="jug" value="1" {{ old('jug', $ticket->jug) == true ? 'checked="checked"' : '' }}> Korsó jár hozzá
                         </label>
                     </div>
                 </div>
