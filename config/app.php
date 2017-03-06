@@ -241,7 +241,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Lava'      => Khill\Lavacharts\Laravel\LavachartsFacade::class,
         'SendGrid'  => SendGrid::class,
-        'sentry'    => Sentry\SentryLaravel\SentryFacade::class,
+        'Sentry'    => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];
