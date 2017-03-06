@@ -14,29 +14,30 @@ $fa-font-path: "~font-awesome/fonts";
 html, body {
   background: no-repeat fixed;
   background-size: 100% 100%;
+  color: black;
 }
 
 @media (max-width: $screen-xs-max) {
   html, body {
-    background-image: url("~/../images/768.jpg") ;
+    background-image: url("~/../images/280.jpg") ;
   }
 }
 
-@media (min-width: $screen-xs-min) {
+@media (min-width: $screen-sm-min) {
   html, body {
-    background-image: url("~/../images/992.jpg");
+    background-image: url("~/../images/992_2.jpg");
   }
 }
 
 @media (min-width: $screen-md-min) {
   html, body {
-    background-image: url("~/../images/1200.jpg");
+    background-image: url("~/../images/1200_2.jpg");
   }
 }
 
 @media (min-width: $screen-lg-min) {
   html, body {
-    background-image: url("~/../images/1920.jpg");
+    background-image: url("~/../images/1920_2.jpg");
   }
 }
 
@@ -51,22 +52,32 @@ div#map {
 
 @media (min-width: $screen-sm-min) {
   .nav-stacked>li+li {
-    margin-top: 7vh;
+    margin-top: 20vh;
   }
 
   .col-content {
-    margin-top: 30vh;
+    margin-top: 24vh;
   }
+
+  .navbar-collapse, .nav, .container-fluid {
+    padding-left: 0;
+  }
+}
+
+a, a:hover, a:active, a:focus {
+  color: black;
 }
 
 ul.nav {
   li, li.active {
     a, a:hover, a:active, a:focus {
-      color: #960b0b;
+      color: #331D00; // black, #960b0b
       background: none;
 
-      font-size: 3.5vh;
-      font-weight: bold;
+      @media (min-width: $screen-sm-min) {
+        font-size: 3.5vh;
+        font-weight: bold;
+      }
     }
   }
 }
