@@ -12,22 +12,18 @@ use Lava;
 
 class IndexController extends Controller
 {
-    private $lava;
-
     public function index()
     {
         $display = Ticket::count() && Order::count();
 
         if( $display ) {
-            $this->lava = new Lavacharts();
-
             Lava::ColumnChart('Orders', $this->getOrdersChart(), [
                 'title' => 'Foglalások'
             ]);
         }
 
         return view('admin.index.index', [
-            'display' => $display
+            'display'   => $display
         ]);
     }
 
