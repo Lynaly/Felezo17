@@ -17,9 +17,9 @@ class CreateSocialAccountsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('provider');
-            $table->string('provider_id')->unique();
-            $table->string('access_token')->nullable();
-            $table->string('refresh_token')->nullable();
+            $table->string('provider_id', 100)->unique();
+            $table->string('access_token', 100)->nullable();
+            $table->string('refresh_token', 100)->nullable();
             $table->timestamps();
         });
     }
