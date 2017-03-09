@@ -37,6 +37,9 @@
                                 <i class="fa fa-comment" aria-hidden="true"></i>
                             </button>
                         @endif
+                        <a href="{{ route('admin.orders.destroy', ['order' => $order]) }}" class="btn btn-danger" title="Foglalás törlése">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
