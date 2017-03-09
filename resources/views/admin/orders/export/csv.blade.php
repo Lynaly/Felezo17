@@ -7,7 +7,7 @@ Név,E-mail cím,Jegytípus,Ár (Ft),Kér korsót?,Korsó felirat,Megjegyzés,Fo
         $order->ticket->price .',' .
         ($order->ticket->jug ? 'Igen' : 'Nem') .',' .
         $order->jug_name .',' .
-        str_replace(',', '', $order->comment) .',' .
+        str_replace('\n', '', str_replace(',', '', $order->comment)) .',' .
         $order->ticket->created_at->format('Y. m. d. H:i:s')
     }}
 @endforeach

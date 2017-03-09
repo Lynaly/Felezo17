@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::group(['prefix' => 'users', 'as' => 'users.'], function()
     {
         Route::get('/', 'UsersController@index')->name('index');
+        Route::get('export/csv', 'UsersController@exportCsv')->name('export.csv');
 
         Route::group(['prefix' => 'promote', 'as' => 'promote.'], function()
         {

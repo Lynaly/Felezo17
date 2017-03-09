@@ -2,6 +2,10 @@
 @section('title', 'Felhasználók')
 @section('icon', 'users')
 @section('content')
+    <p>
+        <a href="{{ route('admin.users.export.csv') }}" class="btn btn-primary">.csv export</a>
+    </p>
+
     <div class="panel panel-default">
         <table class="table">
             <tr>
