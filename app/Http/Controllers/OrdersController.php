@@ -40,6 +40,8 @@ class OrdersController extends Controller
 
     public function placeAnOrder(Request $request)
     {
+        return abort(404);
+
         $validator = $this->getValidator($request);
 
         if( $validator->fails() )
@@ -100,6 +102,8 @@ class OrdersController extends Controller
 
     public function destroy(Order $order)
     {
+        return abort(404);
+
         if( Auth::user()->id != $order->user_id )
             abort(404);
 

@@ -28,9 +28,10 @@
                         </button>
                         @endif
 
+                            {{--}}
                         <a href="{{ route('orders.destroy', ['order' => $order]) }}" class="btn btn-danger" title="Törlés">
                             <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
+                        </a>--}}
                     </td>
                 </tr>
             @endforeach
@@ -43,6 +44,7 @@
     </div>
 @endif
 
+{{---}}
 <p>Maximum <b>{{ env('MAX_TICKETS_PER_USER') }}</b> db jegyet tudsz lefoglalni <i>(jegy típustól függetlenül)</i>.</p>
 
 @if( count($ownOrders) < 5 && $free > 0)
@@ -50,3 +52,4 @@
         <a href="{{ route('orders.order') }}" class="btn btn-primary">Tovább a foglaláshoz</a>
     </div>
 @endif
+--}}
