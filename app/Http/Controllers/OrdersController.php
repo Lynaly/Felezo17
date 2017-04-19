@@ -83,7 +83,7 @@ class OrdersController extends Controller
             (!empty($order->comment) ? '<li>Megjegyzésed: ' . $order->comment .'</li>' : '') .
             '<li>Foglalás időpontja: ' . $order->created_at->format('Y. m. d. H:i') .'</li>' .
             '</ul><br>' .
-            'Találkozunk <b>április 14</b>-én!<br><br>' .
+            'Találkozunk <b>április 21</b>-én!<br><br>' .
             '<i>Üdvözlettel,<br>' .
             'A rendezők</i>'
         );
