@@ -18,6 +18,9 @@
             <label for="ticket">Jegytípus:</label>
             <select name="ticket" id="ticket" class="form-control">
                 @foreach($availableTickets as $ticket)
+                    @if( $ticket->id != 1 )
+                        @continue
+                    @endif
                     <option value="{{ $ticket->id }}" data-jug="{{ $ticket->jug }}">{{ $ticket->name }} - {{ $ticket->price }} Ft</option>
                 @endforeach
             </select>

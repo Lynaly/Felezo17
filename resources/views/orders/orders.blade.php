@@ -44,7 +44,6 @@
     </div>
 @endif
 
-{{---}}
 <p>Maximum <b>{{ env('MAX_TICKETS_PER_USER') }}</b> db jegyet tudsz lefoglalni <i>(jegy típustól függetlenül)</i>.</p>
 
 @if( count($ownOrders) < 5 && $free > 0)
@@ -52,4 +51,3 @@
         <a href="{{ route('orders.order') }}" class="btn btn-primary">Tovább a foglaláshoz</a>
     </div>
 @endif
---}}

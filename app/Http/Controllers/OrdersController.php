@@ -40,7 +40,7 @@ class OrdersController extends Controller
 
     public function placeAnOrder(Request $request)
     {
-        return abort(404);
+        //return abort(404);
 
         $validator = $this->getValidator($request);
 
